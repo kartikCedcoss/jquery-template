@@ -27,7 +27,7 @@ function addrow(productArr) {
   var html =
     "<table> <tr> <th> SKU</th> </t> <th>   Name</th> </t> <th> Price </th< </t> <th> Quantity </th> ";
   for (let i = 0; i < productArr.length; i++) {
-    console.log("Hello " + productArr[i].sku);
+   
     html +=
       "<tr><td>" +
       productArr[i].sku +
@@ -60,18 +60,23 @@ function onEdit(td) {
     selectedRow.cells[3].innerHTML;
 }
 
-function onUpdate() {
-  
- 
-  $("update_product").click(function () {
-    $("#update_product").hide();
+
+
+
+  $("#update_product").click(function(){
+    var v_sku = document.getElementById("product_sku").value;
+    var v_name = document.getElementById("product_name").value;
+    var v_price = document.getElementById("product_price").value;
+    var v_quantity = document.getElementById("product_quantity").value;
+    
+    for(let i = 0; i<productArr.length; i++){
+      if(productArr[i].sku == v_sku)
+      {
+        productArr[i].sku =v_sku;
+        productArr[i].name = v_name;
+        productArr[i].price=v_price;
+        productArr[i].quantity =v_quantity;
+      }
+    }
+    addrow(productArr)
   });
-
-  var sku = document.getElementById("product_sku").value;
-  var name = document.getElementById("product_name").value;
-  var price = document.getElementById("product_price").value;
-  var quantity = document.getElementById("product_quantity").value;
-
-  for(let i = 0; i<)
-
-}
