@@ -3,6 +3,7 @@
 <head>
 	<title>jQuery</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 	<div id="wrapper">
@@ -25,7 +26,10 @@
 			</label>
 			<p class="submit">
 				<input type="button" name="add_product" id="add_product" value="Add Product">
+                <input type="button" name="update_product" id="update_product" value="Update Product">
 			</p>
+            
+            
 		</div>
 		<div id="notification">
 			<div class="success">Product Added Successfully.<a href="#" class="close">X</a></div>
@@ -40,7 +44,7 @@
 					<th>Quantity</th>
 					<th>Action</th>
 				</tr>
-				<tr>
+				 <!-- <tr>
 					<td>101</td>
 					<td>Product 101</td>
 					<td>$150.00</td>
@@ -52,10 +56,11 @@
 					<td>Product 102</td>
 					<td>$100.00</td>
 					<td>20</td>
-					<td><a href="#" class="edit">Edit</a><a href="#" class="delete">Delete</a></td>
-				</tr>
+					<td><a href="#" class="edit">Edit</a><a href="#" class="delete">Delete</a></td> -->
+				 
 			</table>
 		</div>
 	</div>
+    <script src="myscript.js"></script>
 </body>
 </html>
