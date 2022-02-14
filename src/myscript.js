@@ -1,25 +1,38 @@
 var productArr = [];
 $(document).ready(function () {
+  $(".success").hide();
+  $(".error").hide();
   $("#update_product").hide();
   $("update_product").click(function () {
     $("#add_product").show();
   });
-
+  $(".success").click(function () {
+    $(".success").hide();
+  });
+  $(".error").click(function () {
+    $(".error").hide();
+  });
   $("#add_product").on("click", function () {
     var sku = document.getElementById("product_sku").value;
     var name = document.getElementById("product_name").value;
     var price = document.getElementById("product_price").value;
     var quantity = document.getElementById("product_quantity").value;
+    if (isNaN(sku)) {
+      $(".error").show();
+      $("#product_sku").css("border-color", "red");
+    } else {
+      var objproduct = {
+        sku: sku,
+        name: name,
+        price: price,
+        quantity: quantity,
+      };
+      productArr.push(objproduct);
 
-    var objproduct = {
-      sku: sku,
-      name: name,
-      price: price,
-      quantity: quantity,
-    };
-    productArr.push(objproduct);
+      a = addrow(productArr);
 
-    addrow(productArr);
+      $(".success").show();
+    }
   });
 });
 
@@ -62,18 +75,14 @@ function onEdit(td) {
 }
 
 function remove(y) {
-
-
   for (var i = 0; i < productArr.length; i++) {
-    console.log(productArr[i]);
     if (productArr[i].sku == y) {
-
-      alert("you want to delete productArr[i]");
+      alert("you want to delete the data ");
 
       productArr.splice(i, 1);
     }
   }
-  //addrow(productArr);
+  addrow(productArr);
 }
 
 $("#update_product").click(function () {
