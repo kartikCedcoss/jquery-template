@@ -18,29 +18,100 @@ $(document).ready(function () {
     var price = document.getElementById("product_price").value;
     var quantity = document.getElementById("product_quantity").value;
     if (isNaN(sku)) {
-      $(".error").show();
+      $(".error").show().fadeOut(3000);
       $(".success").hide();
-      $("#product_sku").css("border-color", "red");
+      $("#sku_error").text(" enter a number ").fadeOut(3000);
+      $("#sku_error").css("color","red");
+      $("#product_sku").css("border-color", "red",);
+      $("#product_sku").css("border-width", "1px");
+      $("#product_name").css("border-color", "black");
+      $("#product_name").css("border-width", "1px");
+      $("#product_price").css("border-color", "black");
+      $("#product_price").css("border-width", "1px");
+      $("#product_quantity").css("border-color", "black");
+      $("#product_quantity").css("border-width", "1px");
+      $("name_error").hide();
+      $("price_error").hide();
+      $("quantity_error").hide();
+      
+
     } else if (sku == "") {
-      $(".error").show();
+      $(".error").show().fadeOut(3000);
       $(".success").hide();
+      $("#sku_error").text(" sku field cannot be empty").fadeOut(3000);
+      $("#sku_error").css("color","red");
       $("#product_sku").css("border-color", "red");
+      $("#product_sku").css("border-width", "1px");
+      $("#product_name").css("border-color", "black");
+      $("#product_name").css("border-width", "1px");
+      $("#product_price").css("border-color", "black");
+      $("#product_price").css("border-width", "1px");
+      $("#product_quantity").css("border-color", "black");
+      $("#product_quantity").css("border-width", "1px");
+      $("name_error").hide();
+      $("price_error").hide();
+      $("quantity_error").hide();
     } else if (!isNaN(name)) {
-      $(".error").show();
+      $(".error").show().fadeOut(3000);
       $(".success").hide();
+      $("#name_error").text(" enter a string").fadeOut(3000);
+      $("#name_error").css("color","red");
       $("#product_name").css("border-color", "red");
+      $("#product_sku").css("border-color", "black");
+      $("#product_sku").css("border-width", "1px");
+      $("#product_price").css("border-color", "black");
+      $("#product_price").css("border-width", "1px");
+      $("#product_quantity").css("border-color", "black");
+      $("#product_quantity").css("border-width", "1px");
+      $("sku_error").hide();
+      $("price_error").hide();
+      $("quantity_error").hide();
     } else if (name == "") {
-      $(".error").show();
+      $(".error").show().fadeOut(3000);
       $(".success").hide();
+      $("#name_error").text(" name field cannot be empty").fadeOut(3000);
+      $("#name_error").css("color","red");
       $("#product_name").css("border-color", "red");
+      $("#product_sku").css("border-color", "black");
+      $("#product_sku").css("border-width", "1px");
+      $("#product_price").css("border-color", "black");
+      $("#product_price").css("border-width", "1px");
+      $("#product_quantity").css("border-color", "black");
+      $("#product_quantity").css("border-width", "1px");
+      $("sku_error").hide();
+      $("price_error").hide();
+      $("quantity_error").hide();
     } else if (price == "") {
-      $(".error").show();
+      $(".error").show().fadeOut(3000);
       $(".success").hide();
+      $("#price_error").text(" price field cannot be empty").fadeOut(3000);
+      $("#price_error").css("color","red");
       $("#product_price").css("border-color", "red");
+      $("#product_sku").css("border-color", "black");
+      $("#product_sku").css("border-width", "1px");
+      $("#product_name").css("border-color", "black");
+      $("#product_name").css("border-width", "1px");
+      $("#product_quantity").css("border-color", "black");
+      $("#product_quantity").css("border-width", "1px");
+      $("sku_error").hide();
+      $("name_error").hide();
+      $("quantity_error").hide();
     } else if (quantity == "") {
-      $(".error").show();
+      $(".error").show().fadeOut(3000);
       $(".success").hide();
+      $("#quantity_error").text(" quantity field cannot be empty").fadeOut(3000);
+      $("#quantity_error").css("color","red");
       $("#product_quantity").css("border-color", "red");
+      $("#product_sku").css("border-color", "black");
+      $("#product_sku").css("border-width", "1px");
+
+      $("#product_name").css("border-color", "black");
+      $("#product_name").css("border-width", "1px");
+      $("#product_price").css("border-color", "black");
+      $("#product_price").css("border-width", "1px");
+      $("sku_error").hide();
+      $("price_error").hide();
+      $("name_error").hide();
     } else {
       var objproduct = {
         sku: sku,
@@ -48,11 +119,25 @@ $(document).ready(function () {
         price: price,
         quantity: quantity,
       };
-      productArr.push(objproduct);
+      var flag = 0;
+      for( let i = 0; i<productArr.length;i++){
+        if(sku== productArr[i].sku){
+        flag=1;
 
-      a = addrow(productArr);
+        }
+      }
+      if (flag == 1){
+        alert('please enter a valid id ');
+      } 
+      else {
+        productArr.push(objproduct);
+        addrow(productArr);
+        
+      }
+     
+      
 
-      $(".success").show();
+      $(".success").show().fadeOut(3000);
       $(".error").hide();
       $("#product_sku").css("border-color", "black");
       $("#product_sku").css("border-width", "1px");
@@ -63,6 +148,11 @@ $(document).ready(function () {
       $("#product_price").css("border-width", "1px");
       $("#product_quantity").css("border-color", "black");
       $("#product_quantity").css("border-width", "1px");
+      $("sku_error").hide();
+      $("price_error").hide();
+      $("quantity_error").hide();
+      $("name_error").hide();
+
     }
   });
 });
@@ -91,9 +181,8 @@ function addrow(productArr) {
 
 function onEdit(td) {
   $("#update_product").show();
-  //$("edit").click( function(){
+
   $("#add_product").hide();
-  // });
 
   var selectedRow = td.parentElement.parentElement;
   document.getElementById("product_sku").value = selectedRow.cells[0].innerHTML;
@@ -106,9 +195,9 @@ function onEdit(td) {
 }
 
 function remove(y) {
-  for (var i = 0; i < productArr.length; i++) {
-    if (productArr[i].sku == y) {
-      if (confirm("Are you sure you want to delete this item")) {
+  if (confirm("Are you sure you want to delete this item")) {
+    for (var i = 0; i < productArr.length; i++) {
+      if (productArr[i].sku == y) {
         productArr.splice(i, 1);
       }
     }
@@ -134,3 +223,20 @@ $("#update_product").click(function () {
   }
   addrow(productArr);
 });
+function errorMessage1() {
+  
+  var v_sku = document.getElementById("product_sku").value;
+  var v_name = document.getElementById("product_name").value;
+  var v_price = document.getElementById("product_price").value;
+  var v_quantity = document.getElementById("product_quantity").value;
+        document.getElementById("product")
+        if (isNaN(v_sku)) 
+        {
+              console.log('hello');
+            // Changing content and color of content
+            error.textContent = "Please enter a valid number"
+            error.style.color = "red"
+        
+          }
+
+    }
