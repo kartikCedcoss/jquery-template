@@ -132,26 +132,26 @@ $(document).ready(function () {
       else {
         productArr.push(objproduct);
         addrow(productArr);
-        
+        $(".success").show().fadeOut(3000);
+        $(".error").hide();
+        $("#product_sku").css("border-color", "black");
+        $("#product_sku").css("border-width", "1px");
+  
+        $("#product_name").css("border-color", "black");
+        $("#product_name").css("border-width", "1px");
+        $("#product_price").css("border-color", "black");
+        $("#product_price").css("border-width", "1px");
+        $("#product_quantity").css("border-color", "black");
+        $("#product_quantity").css("border-width", "1px");
+        $("sku_error").hide();
+        $("price_error").hide();
+        $("quantity_error").hide();
+        $("name_error").hide();
       }
      
       
 
-      $(".success").show().fadeOut(3000);
-      $(".error").hide();
-      $("#product_sku").css("border-color", "black");
-      $("#product_sku").css("border-width", "1px");
-
-      $("#product_name").css("border-color", "black");
-      $("#product_name").css("border-width", "1px");
-      $("#product_price").css("border-color", "black");
-      $("#product_price").css("border-width", "1px");
-      $("#product_quantity").css("border-color", "black");
-      $("#product_quantity").css("border-width", "1px");
-      $("sku_error").hide();
-      $("price_error").hide();
-      $("quantity_error").hide();
-      $("name_error").hide();
+     
 
     }
   });
