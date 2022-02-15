@@ -19,7 +19,28 @@ $(document).ready(function () {
     var quantity = document.getElementById("product_quantity").value;
     if (isNaN(sku)) {
       $(".error").show();
+      $(".success").hide();
       $("#product_sku").css("border-color", "red");
+    } else if (sku == "") {
+      $(".error").show();
+      $(".success").hide();
+      $("#product_sku").css("border-color", "red");
+    } else if (!isNaN(name)) {
+      $(".error").show();
+      $(".success").hide();
+      $("#product_name").css("border-color", "red");
+    } else if (name == "") {
+      $(".error").show();
+      $(".success").hide();
+      $("#product_name").css("border-color", "red");
+    } else if (price == "") {
+      $(".error").show();
+      $(".success").hide();
+      $("#product_price").css("border-color", "red");
+    } else if (quantity == "") {
+      $(".error").show();
+      $(".success").hide();
+      $("#product_quantity").css("border-color", "red");
     } else {
       var objproduct = {
         sku: sku,
@@ -32,6 +53,11 @@ $(document).ready(function () {
       a = addrow(productArr);
 
       $(".success").show();
+      $(".error").hide();
+      $("#product_sku").css("border-color", "grey");
+      $("#product_name").css("border-color", "black");
+      $("#product_price").css("border-color", "black");
+      $("#product_quantity").css("border-color", "black");
     }
   });
 });
@@ -69,7 +95,7 @@ function onEdit(td) {
   document.getElementById("product_name").value =
     selectedRow.cells[1].innerHTML;
   document.getElementById("product_price").value =
-    selectedRow.cells[2].innerHTML;
+    selectedRow.cells[2].substring(1).innerHTML;
   document.getElementById("product_quantity").value =
     selectedRow.cells[3].innerHTML;
 }
@@ -77,9 +103,9 @@ function onEdit(td) {
 function remove(y) {
   for (var i = 0; i < productArr.length; i++) {
     if (productArr[i].sku == y) {
-      alert("you want to delete the data ");
-
-      productArr.splice(i, 1);
+      if (confirm("Are you sure you want to delete this item")) {
+        productArr.splice(i, 1);
+      }
     }
   }
   addrow(productArr);
